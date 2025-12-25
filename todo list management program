@@ -1,4 +1,4 @@
- # 1.add a task
+    # 1.add a task
     # 2.view all tasks
     # 3.mark a task as complete
     # 4.save task to file
@@ -9,12 +9,17 @@ tasks =[]
 while True:
     print("1. add task")
     print("2. view tasks")
-    print("3. exit")
+    print("3. Mark task as completed")
+    print("4. Exit")
 
-    choice = input("Enter your choice: ")
+    choice = input("Enter your choice(number): ")
 
     if choice=="1":
-        task = input("Enter a task: ")
+        task_name= input("Enter a task: ")
+        task={
+            "name":task_name,
+            "completed":False
+        }
         tasks.append(task)
         print("The task added.")
 
@@ -22,8 +27,12 @@ while True:
         if len(tasks)==0:
             print("👎No tasks available")
         else:
-            for t in range(len(tasks)):           #len(tasks)- number of tasks 
-                print(t+1,".",tasks[t])           #range(2) -> 0,1 
+            for t in range(len(tasks)): 
+                if tasks[t]["completed"]:          #len(tasks)- number of tasks 
+                    status="✅"
+                else:
+                    status="❌"    
+                print("   ",t+1,".",tasks[t]["name"],status)           #range(2) -> 0,1 
 
         """
         number =1
@@ -31,7 +40,26 @@ while True:
             print(number ,".",i)
             number =  number + 1
         """
+    elif choice=="3":
+        task_number=int(input("Enter the number of task that completed: "))
+        if 1<= task_number <= len(tasks):
+            tasks[task_number -1]["completed"]=True
+            print("Task marked as completed.")
+        else:
+            print("The task number is not available.")    
+
 
     else:
         print("Goodbye")
-        break   
+        break     
+
+# show task with numbers 
+# mark tasks as completed
+# save task to a file
+# load tasks automatically
+# clean code using functions 
+
+
+
+
+
